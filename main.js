@@ -81,32 +81,50 @@ for (let item of data) {
     
 }
 
+for (let item of data) {
+    products.innerHTML += `
+    <article class="border rounded-lg bg-white overflow-hidden">
+  <img src="${item.img}" alt="" class="w-full h-44 object-cover" />
+  <div class="p-2">
+    <h1 class="text-lg font-medium text-gray-900">${item.title}</h1>
+    <h2 class="text-blue-700 font-bold text-xl my-1">${item.price}</h2>
+    <button
+      class="bg-gray-900 text-white p-1 w-full rounded-md mt-2 active:scale-95 duration-200"
+    >
+      Add to cart
+    </button>
+  </div>
+</article>
+
+    `
+}
+
 function sendMessageToBot(title, price) {
-  console.log("Tanlov:", title, "Narxi:", price);
+    console.log("Tanlov:", title, "Narxi:", price);
 
-  const message = `Sizning tanlovingiz: ${title}, narxi: ${price}`;
+    const message = `Sizning tanlovingiz: ${title}, narxi: ${price}`;
 
-  const botToken = "8126944357:AAFXETVRTudt_8xbm6dGQzqllrlgIdemL3g";
-  const chatId = "5833556474";
+    const botToken = "7751476502:AAFUQxFH_UjSxq3CJVFXNAT6ynLqw_M1Ibs";
+    const chatId = "Fast_Food_Order_And_Prices_Bot";
 
-  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text: message,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Bot javobi:", data);
-      if (data.ok) {
-        console.log("Xabar muvaffaqiyatli yuborildi");
-      } else {
-        console.error("Xatolik:", data.description);
-      }
+    fetch(`https://api.telegram.org/bot7751476502:AAFUQxFH_UjSxq3CJVFXNAT6ynLqw_M1Ibs/sendMessage`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+        }),
     })
-    .catch((error) => console.error("Xatolik:", error));
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("Bot javobi:", data);
+            if (data.ok) {
+                console.log("Xabar muvaffaqiyatli yuborildi");
+            } else {
+                console.error("Xatolik:", data.description);
+            }
+        })
+        .catch((error) => console.error("Xatolik:", error));
 }
