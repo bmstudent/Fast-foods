@@ -78,5 +78,32 @@ for (let item of data) {
   </div>
 </article>
 
-    `
+    
 }
+
+    function sendMessage() {
+      const message = document.getElementById('message').value;
+
+      if (message.trim() === "") {
+        alert("Iltimos, xabar kiriting!");
+        return;
+      }
+
+      const token = '7751476502:AAFUQxFH_UjSxq3CJVfXNAT6ynLqw_M1Ibs';  // Telegram bot token
+      const chatId = '@Fast_Food_Order_And_Prices_Bot';   // Telegram chat ID
+      const url = `https://api.telegram.org/bot${7751476502:AAFUQxFH_UjSxq3CJVfXNAT6ynLqw_M1Ibs}/sendMessage`;
+
+      // Telegram botga so'rov yuborish
+      axios.post(url, {
+        chat_id: chatId,
+        text: message
+      })
+      .then(response => {
+        alert("Xabar yuborildi!");
+        document.getElementById('message').value = "";  // Xabarni tozalash
+      })
+      .catch(error => {
+        alert("Xatolik yuz berdi: " + error.message);
+      });
+    }
+  </script>
