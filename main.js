@@ -81,29 +81,32 @@ for (let item of data) {
     
 }
 
-    function sendMessage() {
-      const message = document.getElementById('message').value;
+function sendMessageToBot(title, price) {
+  console.log("Tanlov:", title, "Narxi:", price);
 
-      if (message.trim() === "") {
-        alert("Iltimos, xabar kiriting!");
-        return;
+  const message = `Sizning tanlovingiz: ${title}, narxi: ${price}`;
+
+  const botToken = "8126944357:AAFXETVRTudt_8xbm6dGQzqllrlgIdemL3g";
+  const chatId = "5833556474";
+
+  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: message,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Bot javobi:", data);
+      if (data.ok) {
+        console.log("Xabar muvaffaqiyatli yuborildi");
+      } else {
+        console.error("Xatolik:", data.description);
       }
-
-      const token = '7751476502:AAFUQxFH_UjSxq3CJVfXNAT6ynLqw_M1Ibs';  // Telegram bot token
-      const chatId = '@Fast_Food_Order_And_Prices_Bot';   // Telegram chat ID
-      const url = `https://api.telegram.org/bot${7751476502:AAFUQxFH_UjSxq3CJVfXNAT6ynLqw_M1Ibs}/sendMessage`;
-
-      // Telegram botga so'rov yuborish
-      axios.post(url, {
-        chat_id: chatId,
-        text: message
-      })
-      .then(response => {
-        alert("Xabar yuborildi!");
-        document.getElementById('message').value = "";  // Xabarni tozalash
-      })
-      .catch(error => {
-        alert("Xatolik yuz berdi: " + error.message);
-      });
-    }
-  </script>
+    })
+    .catch((error) => console.error("Xatolik:", error));
+}
