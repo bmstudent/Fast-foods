@@ -98,33 +98,3 @@ for (let item of data) {
 
     `
 }
-
-function sendMessageToBot(title, price) {
-    console.log("Tanlov:", title, "Narxi:", price);
-
-    const message = `Sizning tanlovingiz: ${title}, narxi: ${price}`;
-
-    const botToken = "7751476502:AAFUQxFH_UjSxq3CJVFXNAT6ynLqw_M1Ibs";
-    const chatId = "Fast_Food_Order_And_Prices_Bot";
-
-    fetch(`https://api.telegram.org/bot7751476502:AAFUQxFH_UjSxq3CJVFXNAT6ynLqw_M1Ibs/sendMessage`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            chat_id: chatId,
-            text: message,
-        }),
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log("Bot javobi:", data);
-            if (data.ok) {
-                console.log("Xabar muvaffaqiyatli yuborildi");
-            } else {
-                console.error("Xatolik:", data.description);
-            }
-        })
-        .catch((error) => console.error("Xatolik:", error));
-}
