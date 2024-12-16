@@ -81,20 +81,3 @@ for (let item of data) {
     
 }
 
-for (let item of data) {
-    products.innerHTML += `
-    <article class="border rounded-lg bg-white overflow-hidden">
-  <img src="${item.img}" alt="" class="w-full h-44 object-cover" />
-  <div class="p-2">
-    <h1 class="text-lg font-medium text-gray-900">${item.title}</h1>
-    <h2 class="text-blue-700 font-bold text-xl my-1">${item.price}</h2>
-    <button
-      class="bg-gray-900 text-white p-1 w-full rounded-md mt-2 active:scale-95 duration-200"
-    >
-      Add to cart
-    </button>
-  </div>
-</article>
-
-    `
-}
