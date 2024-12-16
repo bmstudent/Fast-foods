@@ -71,13 +71,13 @@ for (let item of data) {
     <h1 class="text-lg font-medium text-gray-900">${item.title}</h1>
     <h2 class="text-blue-700 font-bold text-xl my-1">${item.price}</h2>
     <button
-      class="bg-gray-900 text-white p-1 w-full rounded-md mt-2 active:scale-95 duration-300"
+      class="bg-gray-900 text-white p-1 w-full rounded-md mt-2 active:scale-95 duration-200"
     >
       Add to cart
     </button>
   </div>
 </article>
 
-    
+    `
 }
 
